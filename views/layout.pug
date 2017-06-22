@@ -1,0 +1,42 @@
+doctype html
+html
+  head
+    title Knowledgebase
+    link(rel='stylesheet' href='/bower_componnets/bootstrap/dist/css/bootstrap.css')
+    link(rel='stylesheet' href='/css/style.css')
+  body
+    nav.navbar.navbar-toggleable-md.navbar-inverse.bg-inverse
+      button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon      
+      a.navbar-brand(href='/') Knowledgebase
+      #navbarsExampleDefault.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link(href='/') Home
+          if user    
+            li.nav-item
+              a.nav-link(href='/articles/add') Add Article
+        ul.navbar-nav.ml-auto
+          if user
+            a.nav-link(href='/users/logout') Logout
+          else
+            li.nav-item
+              a.nav-link(href='/users/register') Register
+            li.nav-item
+              a.nav-link(href='/users/login') Login
+    .container
+      != messages('message', locals)
+      if errors
+        div(class="alert alert-danger")
+          ul
+            each error, i in errors
+              li #{error.msg}
+      block content
+      br
+      hr
+      foooter
+        p Copyright &copy; 2017
+      script(src='/bower_componnets/jquery/dist/jquery.js')
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js')
+      script(src='/bower_componnets/bootstrap/dist/js/bootstrap.js')
+      script(src='/js/main.js')
